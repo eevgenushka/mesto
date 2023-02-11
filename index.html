@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Mesto</title>
+</head>
+<body class="page">
+<header class="header">
+<img src="./images/logo.svg" alt="Логотип проекта Mesto." class="header__logo">
+</header>
+<main class="content">
+  <section class="profile">
+      <img src="./images/image.svg" class="profile__avatar" alt="Аватар профиля">
+    <div class="profile__info">
+      <div class="profile__info-container">
+        <h1 class="profile__name">Жак-Ив Кусто</h1>
+        <button class="profile__edit" type="button" aria-label="Редактировать профиль"></button>
+    </div>
+        <p class="profile__about">Исследователь океана</p>
+      </div>
+    <button class="profile__add-button" type="button" aria-label="Добавить изображение"></button>
+  </section>
+  <section class="elements">
+    <article class="element">
+    <img src="./images/Tower.jpg"
+    alt="Эйфелева Башня"
+    class="element__item">
+        <div class="element__description">
+          <h2 class="element__title">Эйфелева Башня</h2>
+          <button class="element__button element__button_active">
+            <img src="./images/heart.svg" alt="heart icon">
+          </button>
+        </div>
+      </article> 
+      <article class="element">
+     <img src="./images/cafe.jpg"
+        class="element__item"
+        alt="Кафе в Париже">
+        <div class="element__description">
+          <h2 class="element__title">Кафе в Париже</h2>
+          <button class="element__button element__button_active">
+            <img src="./images/heart.svg" alt="heart icon">
+          </button>
+        </div>
+      </article>
+      <article class="element">
+      <img src="./images/Karusel.jpg"
+        class="element__item"
+        alt="Карусель на фое Эйфелевой башни">
+        <div class="element__description">
+          <h2 class="element__title">Карусель</h2>
+          <button class="element__button element__button_active">
+            <img src="./images/heart.svg" alt="heart icon">
+          </button>
+        </div>
+      </article>
+        <article class="element">
+      <img src="./images/Lyvr.jpg"
+        class="element__item"
+        alt="Музей Лувр">
+        <div class="element__description">
+          <h2 class="element__title">Лувр</h2>
+          <button class="element__button element__button_active">
+            <img src="./images/heart.svg" alt="heart icon">
+          </button>
+        </div>
+      </article>
+        <article class="element">
+      <img src="./images/Metro.jpg"
+        class="element__item"
+        alt="Метро в Париже">
+        <div class="element__description">
+          <h2 class="element__title">Метро</h2>
+          <button class="element__button element__button_active">
+            <img src="./images/heart.svg" alt="heart icon">
+          </button>
+        </div>
+      </article>
+        <article class="element">
+      <img src="./images/Montmatr.jpg"
+        class="element__item"
+        alt="Район Монмартр в Париже">
+        <div class="element__description">
+          <h2 class="element__title">Монмартр</h2>
+          <button class="element__button element__button_active ">
+            <img src="./images/heart.svg" alt="heart icon">
+          </button>
+        </div>
+    </article>
+  </section>
+</main>
+<footer class="footer">
+  <span class="footer__copyright">&copy; 2023 Mesto Russia</span>
+</footer>
+<div class="popup">
+  <div class="popup__container">
+    <button aria-label="Close" class="popup__button-close" type="button"></button>
+    <h2 class="popup__title">Редактировать профиль</h2>
+    <form class="popup__form" name="form-profile" novalidate>
+      <input
+      type="text"
+      name="popup-name"
+      class="popup__input popup__input_type_name"
+      placeholder="Жак-Ив Кусто"
+      required>
+      <span id="input-name-error" class="popup__error"></span>
+      <input
+      type="text"
+      name="popup-job"
+      class="popup__input popup__input_type_job"
+      placeholder="Исследователь океана"
+      required>
+      <button class="popup__button popup__button-submit" type="submit">Сохранить</button>
+    </form>
+  </div>
+</div>
+<script src="./script/index.js"></script>
+</body>
+</html>
