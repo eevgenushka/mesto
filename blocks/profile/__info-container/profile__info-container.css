@@ -1,9 +1,10 @@
 .profile__info-container{
   display: flex;
+  padding-bottom: 16px;
   
 }
 @media screen and (max-width: 320px) {
   .profile__info-container {
-    padding-left: 31px;
+    padding-top: 26px;
   }
 }
