@@ -11,3 +11,18 @@
     overflow: hidden;
     white-space: nowrap;
 }
+@media screen and (max-width: 700px) {
+  .profile__about {
+    display: flex;
+    align-self: center;
+  }
+}
+
+@media screen and (max-width: 400px) {
+    .profile__about {
+      max-width: 282px;
+      font-size: 14px;
+      line-height: 17px;
+      letter-spacing: 0em;
+    }
+  }

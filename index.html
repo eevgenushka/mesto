@@ -13,7 +13,7 @@
 </header>
 <main class="content">
   <section class="profile">
-      <img src="./images/image.svg" class="profile__avatar" alt="Аватар профиля">
+      <img src="./images/image.jpg" class="profile__avatar" alt="Аватар профиля">
     <div class="profile__info">
       <div class="profile__info-container">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -30,8 +30,7 @@
     class="element__item">
         <div class="element__description">
           <h2 class="element__title">Эйфелева Башня</h2>
-          <button class="element__button element__button_active">
-            <img src="./images/heart.svg" alt="Добавить в избранное">
+          <button class="element__button" type="button" aria-label="Нравится">
           </button>
         </div>
       </article> 
@@ -41,8 +40,7 @@
         alt="Кафе в Париже">
         <div class="element__description">
           <h2 class="element__title">Кафе в Париже</h2>
-          <button class="element__button element__button_active">
-            <img src="./images/heart.svg" alt="Добавить в избранное">
+          <button class="element__button" type="button" aria-label="Нравится">
           </button>
         </div>
       </article>
@@ -52,8 +50,7 @@
         alt="Карусель на фое Эйфелевой башни">
         <div class="element__description">
           <h2 class="element__title">Карусель</h2>
-          <button class="element__button element__button_active">
-            <img src="./images/heart.svg" alt="Добавить в избранное">
+          <button class="element__button" type="button" aria-label="Нравится">
           </button>
         </div>
       </article>
@@ -63,8 +60,7 @@
         alt="Музей Лувр">
         <div class="element__description">
           <h2 class="element__title">Лувр</h2>
-          <button class="element__button element__button_active">
-            <img src="./images/heart.svg" alt="Добавить в избранное">
+          <button class="element__button" type="button" aria-label="Нравится">
           </button>
         </div>
       </article>
@@ -74,8 +70,7 @@
         alt="Метро в Париже">
         <div class="element__description">
           <h2 class="element__title">Метро</h2>
-          <button class="element__button element__button_active">
-            <img src="./images/heart.svg" alt="Добавить в избранное">
+          <button class="element__button" type="button" aria-label="Нравится">
           </button>
         </div>
       </article>
@@ -85,8 +80,7 @@
         alt="Район Монмартр в Париже">
         <div class="element__description">
           <h2 class="element__title">Монмартр</h2>
-          <button class="element__button element__button_active">
-            <img src="./images/heart.svg" alt="Добавить в избранное">
+          <button class="element__button" type="button" aria-label="Нравится">
           </button>
         </div>
     </article>
@@ -104,14 +98,14 @@
       type="text"
       name="popup-name"
       class="popup__input popup__input_type_name"
-      placeholder="Жак-Ив Кусто"
+      placeholder="Укажите имя"
       required>
       <span id="input-name-error" class="popup__error"></span>
       <input
       type="text"
       name="popup-job"
       class="popup__input popup__input_type_job"
-      placeholder="Исследователь океана"
+      placeholder="Укажите профессию"
       required>
       <button class="popup__button popup__button-submit" type="submit">Сохранить</button>
     </form>
