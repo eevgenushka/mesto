@@ -12,13 +12,11 @@ function handleFormClick (evt) {
   popupInputTypeJob.value = profileAbout.textContent;
   popup.classList.add('popup_opened');
 };
-profileEdit.addEventListener('click', handleFormClick);
 
 
 function handleFormCloseClick (evt) {
   popup.classList.remove('popup_opened');
 };
-popupButtonClose.addEventListener('click', handleFormCloseClick);
 
 
 function handleFormSubmit (evt) {
@@ -27,4 +25,7 @@ function handleFormSubmit (evt) {
   profileAbout.textContent = popupInputTypeJob.value;
   popup.classList.remove('popup_opened');
 }
+
+profileEdit.addEventListener('click', handleFormClick);
+popupButtonClose.addEventListener('click', handleFormCloseClick);
 popupForm.addEventListener('submit', handleFormSubmit);
