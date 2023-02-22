@@ -7,5 +7,8 @@
   left: 0;
   justify-content: center;
   align-items: center;
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+  display: flex;
+  transition: opacity 0.4s ease-out;
 }

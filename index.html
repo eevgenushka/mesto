@@ -24,17 +24,19 @@
     <button class="profile__add-button" type="button" aria-label="Добавить изображение"></button>
   </section>
   <section class="elements">
-    <article class="element">
+    <!-- <article class="element"> -->
+      <!-- <button class="element__basket" type="button" aria-label="Удалить"></button>
     <img src="./images/Tower.jpg"
     alt="Эйфелева Башня"
     class="element__item">
         <div class="element__description">
           <h2 class="element__title">Эйфелева Башня</h2>
-          <button class="element__button" type="button" aria-label="Нравится">
-          </button>
+          <button class="element__button" type="button" aria-label="Нравится"></button>
         </div>
       </article> 
       <article class="element">
+        <button class="element__basket" type="button" aria-label="Удалить"> 
+        </button>
      <img src="./images/cafe.jpg"
         class="element__item"
         alt="Кафе в Париже">
@@ -45,6 +47,8 @@
         </div>
       </article>
       <article class="element">
+       <button class="element__basket" type="button" aria-label="Удалить">
+        </button>
       <img src="./images/Karusel.jpg"
         class="element__item"
         alt="Карусель на фое Эйфелевой башни">
@@ -55,6 +59,8 @@
         </div>
       </article>
         <article class="element">
+          <button class="element__basket" type="button" aria-label="Удалить"> 
+          </button>
       <img src="./images/Lyvr.jpg"
         class="element__item"
         alt="Музей Лувр">
@@ -65,6 +71,8 @@
         </div>
       </article>
         <article class="element">
+          <button class="element__basket" type="button" aria-label="Удалить"> 
+          </button>
       <img src="./images/Metro.jpg"
         class="element__item"
         alt="Метро в Париже">
@@ -75,6 +83,8 @@
         </div>
       </article>
         <article class="element">
+          <button class="element__basket" type="button" aria-label="Удалить"> 
+          </button>
       <img src="./images/Montmatr.jpg"
         class="element__item"
         alt="Район Монмартр в Париже">
@@ -82,18 +92,18 @@
           <h2 class="element__title">Монмартр</h2>
           <button class="element__button" type="button" aria-label="Нравится">
           </button>
-        </div>
-    </article>
+        </div> -->
+     <!-- </article> -->
   </section>
 </main>
 <footer class="footer">
   <span class="footer__copyright">&copy; 2023 Mesto Russia</span>
 </footer>
-<div class="popup">
+<div class="popup popup_type_profile">
   <div class="popup__container">
     <button aria-label="Close" class="popup__button-close" type="button"></button>
     <h2 class="popup__title">Редактировать профиль</h2>
-    <form class="popup__form" name="form-profile" novalidate>
+    <form class="popup__form popup__form_type_profile" name="form-profile" novalidate>
       <input
       type="text"
       name="popup-name"
@@ -110,6 +120,45 @@
     </form>
   </div>
 </div>
-<script src="./script/index.js"></script>
+<div class="popup popup_type_place">
+  <div class="popup__container">
+    <button aria-label="Close" class="popup__button-close" type="button"></button>
+    <h2 class="popup__title">Новое место</h2>
+    <form class="popup__form popup__form_type_place" name="form-profile" novalidate>
+      <input
+      type="text"
+      name="popup-name"
+      class="popup__input popup__input_type_place"
+      placeholder="Название"
+      required>
+      <input
+      type="text"
+      name="popup-link"
+      class="popup__input popup__input_type_link"
+      placeholder="Ссылка на картинку"
+      required>
+      <button class="popup__button popup__button-submit" type="submit">Сохранить</button>
+    </form>
+  </div>
+</div>
+<div class="popup popup_type_picture">
+  <div class="popup__container popup__container_type_picture">
+    <button aria-label="Close" class="popup__button-close" type="button"></button>
+    <img src="#" alt="#" class="popup__picture" >
+    <h2 class="popup__name"></h2>
+  </div>
+</div>
+<template id="elements-template">
+  <article class="element">
+    <button class="element__basket" type="button"></button>
+    <img class="element__item" src="#" alt="Описание">
+    <div class="element__description">
+      <h2 class="element__title"></h2>
+      <button class="element__button" type="button" aria-label="like">
+      </button>
+    </div>
+  </article>
+</template>
+<script src="./scripts/index.js"></script>
 </body>
 </html>
