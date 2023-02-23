@@ -87,7 +87,7 @@ function createCard(card) {
   cardImage.addEventListener('click', function(evt) {
   popupTypePicture.src = cardImage;
   popupTypePicture.alt = cardImage;
-  elementTitle.textContent = cardName;
+  popupName.textContent = cardName;
   openPopup(popupTypePicture);});
   const cardDeleteButton = cardElement.querySelector('.element__basket');
   cardDeleteButton.addEventListener('click',deleteButtonsClick);
