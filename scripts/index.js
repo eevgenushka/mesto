@@ -27,74 +27,81 @@ const initialCards = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
-    alt:   'Фото'
+    alt:   'Холмы в Архызе'
   },
   {
     name: 'Челябинская область',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
-    alt:   'Фото'
+    alt:   'Озеро в снегу '
   },
   {
     name: 'Иваново',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
-    alt:   'Фото'
+    alt:   'Вид на панельные дома в Иваново'
   },
   {
     name: 'Камчатка',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
-    alt:   'Фото'
+    alt:   'Камчатка'
   },
   {
     name: 'Холмогорский район',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
-    alt:   'Фото'
+    alt:   'Железная дорога'
   },
   {
     name: 'Байкал',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
-    alt:   'Фото'
+    alt:   'Заснеженный байкал'
   }
 ]; 
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-}
+  document.removeEventListener('keydown', handleEscPopup);
+};
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-}
+  document.addEventListener('keydown', handleEscPopup);
+};
+
+const handleEscPopup = (evt) => {
+  if (evt.key === 'Escape') {
+    const popupClose = document.querySelector('.popup_opened');
+    closePopup(popupClose);
+  };
+};
+
 
 function openTypeProfile() {
   openPopup(popupTypeProfile);
   popupInputTypeName.value = profileName.textContent;
   popupInputTypeJob.value = profileAbout.textContent;
-}
+};
 
 function submitEditProfileForm(evt) {
   evt.preventDefault();
   profileName.textContent = popupInputTypeName.value;
   profileAbout.textContent = popupInputTypeJob.value;
   closePopup(popupTypeProfile);
-}
+};
 
 function createCard(card) {
   const cardElement = cardTemplate.cloneNode(true);;
   const cardName = cardElement.querySelector('.element__title');
-  cardName.textContent = card.name;
   const cardImage = cardElement.querySelector('.element__item');
+  const cardDeleteButton = cardElement.querySelector('.element__basket');
+  const cardlikeButtons = cardElement.querySelector('.element__button');
+
+  cardName.textContent = card.name;
   cardImage.setAttribute('src', card.link);
   cardImage.setAttribute('alt', card.link);  
-  cardImage.addEventListener('click', function(evt) {
-  popupTypePicture.src = cardImage;
-  popupTypePicture.alt = cardImage;
-  popupName.textContent = cardName;
-  openPopup(popupTypePicture);});
-  const cardDeleteButton = cardElement.querySelector('.element__basket');
+
   cardDeleteButton.addEventListener('click',deleteButtonsClick);
-  const cardlikeButtons = cardElement.querySelector('.element__button');
   cardlikeButtons.addEventListener('click',likeButtonsClick);
-  const cardPictures = cardElement.querySelector('.element__item');
-  cardPictures.addEventListener('click',openPopupPictures);
+  cardImage.addEventListener('click',openPopupPictures);
+  
   cardsContainer.prepend(cardElement);
   
   return cardElement;
@@ -139,11 +146,24 @@ function addCard(evt) {
   closePopup(popupTypePlace);
 };
 
-profileEdit.addEventListener("click", openTypeProfile);
-profileAddButton.addEventListener("click", () => openPopup(popupTypePlace));
-popupFormTypeProfile.addEventListener("submit", submitEditProfileForm);
-popupButtonClose.forEach((button) => {
-  const popup = button.closest('.popup');
+profileEdit.addEventListener('click', openTypeProfile);
+profileAddButton.addEventListener('click', () => openPopup(popupTypePlace));
+popupFormTypeProfile.addEventListener('submit', submitEditProfileForm);
+ popupButtonClose.forEach((button) => {
+ const popup = button.closest('.popup');
   button.addEventListener("click", () => closePopup(popup));
-});
+ });
 popupFormTypePlace.addEventListener('submit', addCard)
+
+popupButton.forEach((item) => {
+  item.addEventListener('click', (evt) => {
+    if (evt.target === evt.currentTarget) {
+      const popupButtonOverlay = popupAddClosest(evt);
+      closePopup(popupButtonOverlay);
+    };
+  });
+});
+
+const popupAddClosest = (evt) => {
+  return evt.target.closest('.popup');
+};
