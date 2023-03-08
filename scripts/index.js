@@ -73,7 +73,6 @@ const handleEscPopup = (evt) => {
   };
 };
 
-
 function openTypeProfile() {
   openPopup(popupTypeProfile);
   popupInputTypeName.value = profileName.textContent;
@@ -93,22 +92,30 @@ function createCard(card) {
   const cardImage = cardElement.querySelector('.element__item');
   const cardDeleteButton = cardElement.querySelector('.element__basket');
   const cardlikeButtons = cardElement.querySelector('.element__button');
-
+  
   cardName.textContent = card.name;
-  cardImage.setAttribute('src', card.link);
-  cardImage.setAttribute('alt', card.link);  
+  cardImage.src = card.link;
+  cardImage.alt = card.name;  
 
   cardDeleteButton.addEventListener('click',deleteButtonsClick);
   cardlikeButtons.addEventListener('click',likeButtonsClick);
-  cardImage.addEventListener('click',openPopupPictures);
-  
-  cardsContainer.prepend(cardElement);
-  
+ 
+  const popupWiewPicture = cardImage;
+  popupWiewPicture.addEventListener('click', function () {
+    popupPicture.src = card.link;
+    popupPicture.alt = card.name;
+    popupName.textContent = card.name;
+    openPopup(popupTypePicture);
+  });
+
   return cardElement;
-};
+}
 
-initialCards.forEach(createCard);
-
+initialCards.forEach((card) => { 
+  const newCard = createCard(card) 
+  cardsContainer.append(newCard) 
+});
+ 
 function likeButtonsClick(evt) {
   const button = evt.target;
   const like = button.closest('.element__button');
@@ -121,29 +128,24 @@ function deleteButtonsClick(evt) {
   card.remove()
 };
 
-function openPopupPictures (evt) {  
- openPopup(popupTypePicture);
- const imageSrc = evt.target.getAttribute('src');
- const imageAlt = evt.target.getAttribute('alt');
- const card = evt.target.closest('.element');
- const imageTitle = card.querySelector('.element__title').textContent;
- popupPicture.src = imageSrc;
- popupPicture.alt = imageAlt;
- popupName.textContent = imageTitle;
-};
-
-const renderInitialCards  = (card) => {
+const renderCard   = (card) => {
   cardsContainer.prepend(createCard(card));
 };
 
 function addCard(evt) {
   evt.preventDefault();
-  renderInitialCards ({
+  renderCard  ({
     name: popupInputTypePlace.value,
     link: popupInputTypeLink.value,
   });
-  evt.target.reset();
   closePopup(popupTypePlace);
+  evt.target.reset();
+
+  if (popupInputTypePlace.value === '' || popupInputTypeLink.value === '') {
+    setInitialStateform.setAttribute('disabled', true);
+    setInitialStateform.classList.add('popup__button-submit_disabled');
+    console.log(test);
+  };
 };
 
 profileEdit.addEventListener('click', openTypeProfile);
