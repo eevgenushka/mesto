@@ -23,6 +23,9 @@ const popupName = document.querySelector('.popup__name');
 const cardsContainer = document.querySelector('.elements'); 
 const cardTemplate = document.querySelector('#elements-template').content;
 
+const inputList = Array.from(document.querySelectorAll('.popup__input')); 
+const buttonElement = popupFormTypePlace.querySelector('.popup__button-submit');
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -141,12 +144,8 @@ function addCard(evt) {
   closePopup(popupTypePlace);
   evt.target.reset();
 
-  if (popupInputTypePlace.value === '' || popupInputTypeLink.value === '') {
-    setInitialStateform.setAttribute('disabled', true);
-    setInitialStateform.classList.add('popup__button-submit_disabled');
-    console.log(test);
+  toggleButtonState(inputList, buttonElement, formValidator);
   };
-};
 
 profileEdit.addEventListener('click', openTypeProfile);
 profileAddButton.addEventListener('click', () => openPopup(popupTypePlace));
@@ -169,3 +168,4 @@ popupButton.forEach((item) => {
 const popupAddClosest = (evt) => {
   return evt.target.closest('.popup');
 };
+

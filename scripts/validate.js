@@ -58,22 +58,14 @@ const setEventListeners = (formElement, config) => {
       buttonElement.removeAttribute('disabled');
     }
   }; 
-
-  function setInitialStateform(formElement, config) {
-    const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
-    const buttonElement = formElement.querySelector(config.submitButtonSelector);
-    inputList.forEach(function (inputElement) {
-      hideInputError(formElement, inputElement, config);
-})
-      toggleButtonState(inputList, buttonElement,  config);
-};
-
-  enableValidation({
+  
+ formValidator=({
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__button-submit',
     inactiveButtonClass: 'popup__button-submit_disabled',
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__error_visible'
-    }); 
+    });
   
+    enableValidation(formValidator);
