@@ -168,4 +168,3 @@ popupButton.forEach((item) => {
 const popupAddClosest = (evt) => {
   return evt.target.closest('.popup');
 };
-
