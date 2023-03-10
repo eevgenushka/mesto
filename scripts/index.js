@@ -6,8 +6,8 @@ const popupInputTypeName = document.querySelector('.popup__input_type_name');
 const popupInputTypeJob= document.querySelector('.popup__input_type_job');
 const popupTypeProfile= document.querySelector('.popup_type_profile');
 
-const popupButtonClose = document.querySelectorAll('.popup__button-close');
-const popupButton = document.querySelectorAll('.popup');
+const buttonList = document.querySelectorAll('.popup__button-close');
+const popups = document.querySelectorAll('.popup');
 
 const popupFormTypePlace = document.querySelector('.popup__form_type_place');
 const profileAddButton = document.querySelector('.profile__add-button');
@@ -150,13 +150,13 @@ function addCard(evt) {
 profileEdit.addEventListener('click', openTypeProfile);
 profileAddButton.addEventListener('click', () => openPopup(popupTypePlace));
 popupFormTypeProfile.addEventListener('submit', submitEditProfileForm);
- popupButtonClose.forEach((button) => {
+buttonList.forEach((button) => {
  const popup = button.closest('.popup');
   button.addEventListener("click", () => closePopup(popup));
  });
 popupFormTypePlace.addEventListener('submit', addCard)
 
-popupButton.forEach((item) => {
+popups.forEach((item) => {
   item.addEventListener('click', (evt) => {
     if (evt.target === evt.currentTarget) {
       const popupButtonOverlay = popupAddClosest(evt);

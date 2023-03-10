@@ -1,3 +1,4 @@
 .popup_type_picture {
-  background: rbga(0, 0, 0, 0.9);
+background: rgba(0, 0, 0, 0.9);
+opacity: 1;
 }
