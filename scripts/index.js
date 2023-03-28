@@ -1,4 +1,4 @@
-import { initialCards, formConfigValidator } from "./constants.js";
+import { initialCards, validationConfig } from "./constants.js";
 import { Card } from "./card.js";
 import { FormValidator } from "./FormValidator.js";
 
@@ -10,7 +10,7 @@ const popupInputTypeName = document.querySelector(".popup__input_type_name");
 const popupInputTypeJob = document.querySelector(".popup__input_type_job");
 const popupTypeProfile = document.querySelector(".popup_type_profile");
 
-const buttonList = document.querySelectorAll(".popup__button-close");
+const buttonsCloseList = document.querySelectorAll(".popup__button-close");
 const popups = document.querySelectorAll(".popup");
 
 const popupFormTypePlace = document.querySelector(".popup__form_type_place");
@@ -26,10 +26,10 @@ const popupName = document.querySelector(".popup__name");
 
 const cardsContainer = document.querySelector(".elements");
 
-const formTypePlaceValidator = new FormValidator(formConfigValidator,popupFormTypePlace);
+const formTypePlaceValidator = new FormValidator(validationConfig,popupFormTypePlace);
 formTypePlaceValidator.enableValidation();
 
-const formTypeProfileValidator = new FormValidator(formConfigValidator,popupFormTypeProfile);
+const formTypeProfileValidator = new FormValidator(validationConfig,popupFormTypeProfile);
 formTypeProfileValidator.enableValidation();
 
 function closePopup(popup) {
@@ -52,13 +52,12 @@ const handleEscPopup = (evt) => {
 popups.forEach((item) => {
   item.addEventListener("click", (evt) => {
     if (evt.target === evt.currentTarget) {
-      const popupButtonOverlay = popupAddClosest(evt);
-      closePopup(popupButtonOverlay);
+      closePopup(item);
     }
   });
 });
 
-function openTypeProfile() {
+function openPopupProfile() {
   formTypeProfileValidator.resetValidation();
   openPopup(popupTypeProfile);
   popupInputTypeName.value = profileName.textContent;
@@ -72,7 +71,7 @@ function submitEditProfileForm(evt) {
   closePopup(popupTypeProfile);
 }
 
-const popupWiewPicture = (cardImage) => {
+const viewPopupPicture = (cardImage) => {
   popupPicture.src = cardImage.link;
   popupPicture.alt = cardImage.name;
   popupName.textContent = cardImage.name;
@@ -80,7 +79,7 @@ const popupWiewPicture = (cardImage) => {
 };
 
 const generateCard = (data) => {
-  const card = new Card(data, "#elements-template", popupWiewPicture);
+  const card = new Card(data, "#elements-template", viewPopupPicture);
   return card.generateCard();
 };
 
@@ -99,7 +98,6 @@ function addCard(evt) {
     link: popupInputTypeLink.value,
   });
   closePopup(popupTypePlace);
-  evt.target.reset();
 }
 
 profileAddButton.addEventListener("click", () => {
@@ -109,9 +107,9 @@ profileAddButton.addEventListener("click", () => {
   formTypePlaceValidator.resetValidation();
 });
 
-profileEdit.addEventListener("click", openTypeProfile);
+profileEdit.addEventListener("click", openPopupProfile);
 popupFormTypeProfile.addEventListener("submit", submitEditProfileForm);
-buttonList.forEach((button) => {
+buttonsCloseList.forEach((button) => {
   const popup = button.closest(".popup");
   button.addEventListener("click", () => closePopup(popup));
 });

@@ -1,10 +1,10 @@
 class FormValidator {
-  constructor(formConfigValidator, formElement) {
-    this._inputSelector = formConfigValidator.inputSelector;
-    this._submitButtonSelector = formConfigValidator.submitButtonSelector;
-    this._inactiveButtonClass = formConfigValidator.inactiveButtonClass;
-    this._inputErrorClass = formConfigValidator.inputErrorClass;
-    this._errorClass = formConfigValidator.errorClass;
+  constructor(validationConfig, formElement) {
+    this._inputSelector = validationConfig.inputSelector;
+    this._submitButtonSelector = validationConfig.submitButtonSelector;
+    this._inactiveButtonClass = validationConfig.inactiveButtonClass;
+    this._inputErrorClass = validationConfig.inputErrorClass;
+    this._errorClass = validationConfig.errorClass;
 
     this._formElement = formElement;
     this._inputList = Array.from(
@@ -33,7 +33,7 @@ class FormValidator {
     inputElement.classList.remove(this._inputErrorClass);
   }
 
-  _isValid(inputElement) {
+  _toggleInputErrorState(inputElement) {
     if (!inputElement.validity.valid) {
       this._showInputError(inputElement);
     } else {
@@ -67,7 +67,7 @@ class FormValidator {
   _setEventListeners() {
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
-        this._isValid(inputElement);
+        this._toggleInputErrorState(inputElement);
         this._toggleButtonState();
       });
     });
