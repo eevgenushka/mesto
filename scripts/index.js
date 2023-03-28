@@ -114,7 +114,3 @@ buttonsCloseList.forEach((button) => {
   button.addEventListener("click", () => closePopup(popup));
 });
 popupFormTypePlace.addEventListener("submit", addCard);
-
-const popupAddClosest = (evt) => {
-  return evt.target.closest(".popup");
-};
