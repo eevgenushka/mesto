@@ -4,16 +4,15 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto</title>
 </head>
 <body class="page">
 <header class="header">
-<img src="./images/logo.svg" alt="Логотип проекта Mesto." class="header__logo">
+  <img src="<%=require('./images/logo.svg')%>" alt="Логотип проекта Mesto" class="header__logo"> 
 </header>
 <main class="content">
   <section class="profile">
-      <img src="./images/image.jpg" class="profile__avatar" alt="Аватар профиля">
+    <img src="<%=require('./images/image.jpg')%>" alt="Аватар профиля" class="profile__avatar"> 
     <div class="profile__info">
       <div class="profile__info-container">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -62,7 +61,7 @@
       <input
       id="title-input"
       type="text"
-      name="title-input"
+      name="name"
       class="popup__input popup__input_type_place"
       placeholder="Название" minlength="2" maxlength="30"
       required> 
@@ -70,7 +69,7 @@
       <input
       id="link-input"
       type="url"
-      name="link-input"
+      name="link"
       class="popup__input popup__input_type_link"
       placeholder="Ссылка на картинку"
       required>
@@ -97,6 +96,5 @@
     </div>
   </article>
 </template>
-<script type="module" src="./scripts/index.js"></script>
 </body>
 </html>
