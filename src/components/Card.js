@@ -3,7 +3,7 @@ export default class Card {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
-    this.handleCardClick = handleCardClick;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -44,7 +44,7 @@ export default class Card {
     this._cardElementLike.addEventListener("click", () => this._likeCard());
     this._cardElementDel.addEventListener("click", () => this._deleteCard());
     this._cardElementPhoto.addEventListener("click", () =>
-      this.handleCardClick({
+      this._handleCardClick({
         link: this._link,
         name: this._name,
       })
