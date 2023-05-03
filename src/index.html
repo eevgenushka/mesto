@@ -12,14 +12,17 @@
 </header>
 <main class="content">
   <section class="profile">
-    <img src="<%=require('./images/image.jpg')%>" alt="Аватар профиля" class="profile__avatar"> 
+    <div class="profile__content">
+    <button class="profile__pen" type="button" aria-label="Редактировать аватар">
+      <img src="<%=require('./images/image.jpg')%>" alt="Аватар профиля" class="profile__avatar"></button> 
     <div class="profile__info">
       <div class="profile__info-container">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
         <button class="profile__edit" type="button" aria-label="Редактировать профиль"></button>
-    </div>
+      </div>
         <p class="profile__about">Исследователь океана</p>
       </div>
+    </div>
     <button class="profile__add-button" type="button" aria-label="Добавить изображение"></button>
   </section>
   <section class="elements">
@@ -85,14 +88,43 @@
     <h2 class="popup__name"></h2>
   </div>
 </div>
+<div class="popup popup_type_avatar">
+  <div class="popup__container popup__container_type_avatar">
+    <button aria-label="Close" class="popup__button-close" type="button"></button>
+    <h2 class="popup__title">Обновить аватар</h2>
+    <form class="popup__form popup__form_type_avatar" name="popup_form_avatar" id="formEditAvatar" novalidate>
+      <input
+      id="avatar"
+      type="url"
+      name="avatarLink"
+      class="popup__input popup__input_type_avatar"
+      placeholder="Ссылка на картинку"
+      required>
+      <span class="popup__error" id="avatar-error">Введите адрес сайта.</span>
+      <button class="popup__button popup__button-submit" type="submit">Сохранить</button>
+    </form>
+  </div>
+</div>
+<div class="popup popup_delete_card">
+  <div class="popup__container popup__container_type_delete">
+    <h2 class="popup__title">Вы уверены?</h2>
+    <form class="popup__form popup__form_delete-card" name="form-profile" novalidate></form>
+      <button type="submit" class="popup__button popup__button_delete-card">Да</button>
+    </form>
+    <button aria-label="Close" class="popup__button-close" type="button"></button>
+  </div>
+</div>
 <template id="elements-template">
   <article class="element">
-    <button class="element__basket" type="button"></button>
+    <button class="element__basket" type="button">
+    </button>
     <img class="element__item" src="#" alt="Описание">
     <div class="element__description">
       <h2 class="element__title"></h2>
+      <div class="element__like-container">
       <button class="element__button" type="button" aria-label="like">
       </button>
+      <p class="element__like-counter">0</p>
     </div>
   </article>
 </template>

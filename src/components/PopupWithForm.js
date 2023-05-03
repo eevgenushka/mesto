@@ -1,11 +1,13 @@
 import Popup from './Popup.js'
 
 export default class PopupWithForm extends Popup {
-  constructor(popupSelector, {submitForm}) {
+  constructor(popupSelector, submitForm) {
     super(popupSelector);
     this._submitForm = submitForm;
     this._form = this._popup.querySelector('.popup__form');
     this._inputList  = this._form.querySelectorAll('.popup__input');
+    this._submitButton = this._form.querySelector('.popup__button-submit');
+    this._defaultText = this._submitButton.textContent;
   }
 
   _getInputValues() {
@@ -33,4 +35,12 @@ close() {
   super.close();
   this._form.reset();
 }
+
+toggleSaveStatus(status, text) {	
+  if (status) {
+    this._submitButton.textContent = text
+  } else (
+    this._submitButton.textContent = this._defaultText)
+};
+
 }
