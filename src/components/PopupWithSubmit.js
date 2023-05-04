@@ -15,12 +15,16 @@ export default class PopupWithSubmit extends Popup {
 		this._cardId = cardId;
 	};
 
+	newSubmitCallback(action) {
+    this._handleDelete = action;
+  }
+
 	setEventListeners() {
 		super.setEventListeners();
 
 		this._buttonSubmit.addEventListener('submit', (evt) => {
-			evt.preventDefault();
-			this._handleDelete({idCard: this._idCard, card: this._card});
+			// evt.preventDefault();
+			this._newSubmitCallback(evt);
 		});
 	};
 
