@@ -119,31 +119,27 @@ const formPopupEditAvatar = new PopupWithForm(
             console.log(err);
           })
       },
-     (card, cardId) => {
-      api.deleteCard(cardId)
-        .then(() => {
-             card.handleDeleteYourCard(cardId);
-          formPopupDelete.close();
-        })
-         },
-        (card, cardId) => { formPopupDelete.open(card, cardId) },
+      handleDelete,
    );
       
     return card.generateCard();
   };
-  const formPopupDelete = new PopupWithSubmit(
-    '.popup_delete_card');
-    //  (card, cardId) => {
-    //   api.deleteCard(cardId)
-    //     .then(() => {
-    //        card.deleteCard();
-    //       formPopupDelete.close();
-    //     })
-    //     .catch((err) => {
-    //        console.log(err);
-    //      })
-    //  }
-   
+  const formPopupDelete = new PopupWithSubmit('.popup_delete_card');
+
+    function handleDelete(card) {
+      const submitFormConfirm = () => {
+        api.deleteCard(card.cardId)
+          .then(() => {
+            card.handleDeleteYourCard(cardId);
+            formPopupDelete.close();
+          })
+          .catch((err) => {
+              console.log(err);
+      });
+    }
+      formPopupDelete.setSubmitAction(submitFormConfirm);
+      formPopupDelete.open();
+    } 
 
   const popupAddNewCard = new PopupWithForm(
     ".popup_type_place", 
