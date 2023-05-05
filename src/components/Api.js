@@ -12,77 +12,66 @@ export default class Api {
   }
 
   getInitialCards() {
-     return fetch(`${this._url}/cards`, {
-      method: 'GET',
+    return fetch(`${this._url}/cards`, {
+      method: "GET",
       headers: this._headers,
-    })
-      .then(res => this._getResponseData(res));
+    }).then((res) => this._getResponseData(res));
   }
 
   getMyProfile() {
     return fetch(`${this._url}/users/me`, {
-      method: 'GET',
+      method: "GET",
       headers: this._headers,
-    })
-    .then(res => this._getResponseData(res));
+    }).then((res) => this._getResponseData(res));
   }
 
   editMyProfile(userData) {
     return fetch(`${this._url}/users/me`, {
-      method: 'PATCH',
+      method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
         name: userData["name"],
-				about: userData["job"]
-      })
-    })
-    .then(res => this._getResponseData(res));
+        about: userData["job"],
+      }),
+    }).then((res) => this._getResponseData(res));
   }
 
   setNewCard(name, link) {
     return fetch(`${this._url}/cards`, {
-      method: 'POST',
+      method: "POST",
       headers: this._headers,
       body: JSON.stringify({ name, link }),
-    })
-    .then((res) =>
-      this._getResponseData(res)
-    )
-};
-  
+    }).then((res) => this._getResponseData(res));
+  }
+
   setLikeCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
-      method: 'PUT',
+      method: "PUT",
       headers: this._headers,
-    })
-    .then(res => this._getResponseData(res));
+    }).then((res) => this._getResponseData(res));
   }
 
   removeLikeCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: this._headers,
-    })
-      .then(res => this._getResponseData(res));
+    }).then((res) => this._getResponseData(res));
   }
 
   deleteCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}`, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: this._headers,
-    })
-    .then(res => this._getResponseData(res));
+    }).then((res) => this._getResponseData(res));
   }
 
   setNewAvatar(data) {
     return fetch(`${this._url}/users/me/avatar`, {
-      method: 'PATCH',
+      method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        avatar: data["avatarLink"]
-      })
-    })
-    .then(res => this._getResponseData(res));
+        avatar: data["avatarLink"],
+      }),
+    }).then((res) => this._getResponseData(res));
   }
-
 }
