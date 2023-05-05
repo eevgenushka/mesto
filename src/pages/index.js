@@ -23,12 +23,8 @@ const popupInputTypeName = document.querySelector(".popup__input_type_name");
 const popupInputTypeJob = document.querySelector(".popup__input_type_job");
 const popupFormTypePlace = document.querySelector(".popup__form_type_place");
 const profileAddButton = document.querySelector(".profile__add-button");
-const buttonPopupDeleteCard = document.querySelector(".popup__button_delete-card");
-const popupAvatar = document.querySelector('.popup_type_avatar');
 const formPopupAvatar = document.querySelector('.popup__form_type_avatar');
-const popupConfirm = document.querySelector('.popup_delete-card');
 const avatarEditButton = document.querySelector('.profile__pen');
-const formPopupDeleteCard = document.querySelector('.element__basket');
 
 const api = new Api({
   url: "https://mesto.nomoreparties.co/v1/cohort-65",
@@ -99,7 +95,26 @@ const formPopupEditAvatar = new PopupWithForm(
   avatarSelector:".profile__avatar"});
   
   const popupWithImage = new PopupWithImage(".popup_type_picture");
-  
+
+  const formPopupDelete = new PopupWithSubmit('.popup_delete_card'
+  );
+
+
+  function handleDelete(card) {
+    const submitFormConfirm = () => {
+      api.deleteCard(card._id)
+      .then(response => {
+        card.handleDeleteYourCard(response);
+           formPopupDelete.close();
+        })
+        .catch((err) => {
+            console.log(err);
+    });
+  }
+    formPopupDelete.setSubmitAction(submitFormConfirm);
+    formPopupDelete.open();
+  } 
+
   function createCard(data) {
     const card = new Card(data,
       userId,
@@ -118,29 +133,14 @@ const formPopupEditAvatar = new PopupWithForm(
           .catch((err) => {
             console.log(err);
           })
-      },
-      handleDelete,
-   );
+      },{
+      handleDeleteYourCard: handleDelete,});
       
     return card.generateCard();
   };
-  const formPopupDelete = new PopupWithSubmit('.popup_delete_card');
-
-    function handleDelete(card) {
-      const submitFormConfirm = () => {
-        api.deleteCard(card.cardId)
-          .then(() => {
-            card.handleDeleteYourCard(cardId);
-            formPopupDelete.close();
-          })
-          .catch((err) => {
-              console.log(err);
-      });
-    }
-      formPopupDelete.setSubmitAction(submitFormConfirm);
-      formPopupDelete.open();
-    } 
-
+ 
+  
+  
   const popupAddNewCard = new PopupWithForm(
     ".popup_type_place", 
     (data) => {

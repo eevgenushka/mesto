@@ -1,5 +1,5 @@
 export default class Card {
-  constructor(data, userId, templateSelector, handleCardClick, handleLike, handleUnlike, handleDeleteYourCard) {
+  constructor(data, userId, templateSelector, handleCardClick, handleLike, handleUnlike, {handleDeleteYourCard}) {
     this._cardData = data;
     this._name = data.name;
     this._link = data.link;
@@ -47,7 +47,6 @@ export default class Card {
   }
 
   _likeCard() {
-    // this._cardElementLike.classList.toggle("element__button_active");
      if (this._ifCardLiked()) {
 			this._handleUnlike(this._cardId)
 		} else {
@@ -78,9 +77,9 @@ export default class Card {
 	};
 
   _setEventListeners() {
-    this._cardElementLike.addEventListener("click", () => { this. _likeCard();});
+    this._cardElementLike.addEventListener("click", () => { this. _likeCard(this);});
     this._cardElementDel.addEventListener('click', () => {
-      this._handleDeleteYourCard();
+      this._handleDeleteYourCard(this);
     });
     this._cardElementPhoto.addEventListener("click", () => {
       this._handleCardClick(this._link, this._name,); }
