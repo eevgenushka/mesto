@@ -46,21 +46,21 @@ class FormValidator {
     });
   }
 
-  _disableButton() {
+  disableButton() {
     this._buttonElement.classList.add(this._inactiveButtonClass);
     this._buttonElement.setAttribute("disabled", true);
   }
 
-  _enableButton() {
+  enableButton() {
     this._buttonElement.classList.remove(this._inactiveButtonClass);
     this._buttonElement.removeAttribute("disabled");
   }
 
   _toggleButtonState() {
     if (this._hasInvalidInput()) {
-      this._disableButton();
+      this.disableButton();
     } else {
-      this._enableButton();
+      this.enableButton();
     }
   }
 
@@ -70,10 +70,6 @@ class FormValidator {
         this._toggleInputErrorState(inputElement);
         this._toggleButtonState();
       });
-    });
-
-    this._formElement.addEventListener("submit", (evt) => {
-      evt.preventDefault();
     });
   }
 
