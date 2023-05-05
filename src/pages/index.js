@@ -102,9 +102,9 @@ const formPopupEditAvatar = new PopupWithForm(
 
   function handleDelete(card) {
     const submitFormConfirm = () => {
-      api.deleteCard(card._id)
+      api.deleteCard(card.cardId)
       .then(response => {
-        card.handleDeleteYourCard(response);
+        card.deleteCard(response);
            formPopupDelete.close();
         })
         .catch((err) => {
