@@ -42,7 +42,7 @@ let userId;
 
   Promise.all([api.getMyProfile(), api.getInitialCards()])
   	.then(([{name, about, avatar, _id}, cardsData]) => {
-     userId = (name, about, avatar, _id)._id;
+     userId = _id;
  	  userInfo.setUserInfo(name, about, avatar, _id);
 	  cardList.renderItems(cardsData);
  	})
@@ -102,9 +102,9 @@ const formPopupEditAvatar = new PopupWithForm(
   
   function createCard(data) {
     const card = new Card(data,
+      userId,
        "#elements-template",
        () => popupWithImage.open(data.name, data.link),
-       userId,
        (cardId) => {
         api.setLikeCard(cardId)
           .then((res) => card.countLikes(res))
@@ -119,15 +119,16 @@ const formPopupEditAvatar = new PopupWithForm(
             console.log(err);
           })
       },
-      (card, cardId) => {
-        api.deleteCard(cardId)
-          .then(() => {
-             card.deleteCard(cardId);
-            formPopupDelete.close();
-          })
-        },
-      (card, cardId) => { formPopupDelete.open(card, cardId) }
-    );
+     (card, cardId) => {
+      api.deleteCard(cardId)
+        .then(() => {
+             card.handleDeleteYourCard(cardId);
+          formPopupDelete.close();
+        })
+         },
+        (card, cardId) => { formPopupDelete.open(card, cardId) },
+   );
+      
     return card.generateCard();
   };
   const formPopupDelete = new PopupWithSubmit(
@@ -150,8 +151,9 @@ const formPopupEditAvatar = new PopupWithForm(
       popupAddNewCard.toggleSaveStatus(true, "Сохранение...");
       formTypePlaceValidator._disableButton();
       api.setNewCard(data['name'], data['link'])
-			.then((result) => {
-      cardList.addItem(createCard(result));
+			.then((res) => {
+      cardList.addItem(createCard(res)
+    );
       setTimeout(() => popupAddNewCard.close(), 1000);
     })
     .catch((err) => {

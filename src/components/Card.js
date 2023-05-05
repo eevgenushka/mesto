@@ -1,12 +1,12 @@
 export default class Card {
-  constructor(data, templateSelector, handleCardClick, handleDeleteYourCard, handleLike, handleUnlike, userId) {
+  constructor(data, userId, templateSelector, handleCardClick, handleLike, handleUnlike, handleDeleteYourCard) {
     this._cardData = data;
     this._name = data.name;
     this._link = data.link;
     this._cardId = data._id;
     this.likes = data.likes;
     this.userId = userId;
-    this._owner = data.owner;
+    this._owner = data.owner._id;
     this._likesCounter = data.likes.length;
     this._templateSelector = templateSelector;
     this._handleLike = handleLike;
@@ -31,15 +31,15 @@ export default class Card {
     this._cardElementLike = this._cardElement.querySelector(".element__button");
     this._cardElementDel = this._cardElement.querySelector(".element__basket");
     this._counter = this._cardElement.querySelector('.element__like-counter');
-    this.countLikes(this._cardData);
+     this.countLikes(this._cardData);
 
     this._cardElementTitle.textContent = this._name;
     this._cardElementPhoto.src = this._link;
     this._cardElementPhoto.alt = this._name;
 
-        //  if (this._cardData.owner._id !== this.userId) {
-		    // 	this._cardElementDel.classList.add("element__basket_hidden")
-		    //   };
+          if (this._cardData.owner._id !== this.userId) {
+		     	this._cardElementDel.classList.add("element__basket_hidden")
+		       };
 
     this._setEventListeners();
 
@@ -57,7 +57,7 @@ export default class Card {
 		
 
   _ifCardLiked() {
-		return this._likes.some(item => item._id === this.userId);
+		return this._likes.some((item) => item._id === this.userId);
 	};
 
   deleteCard() {
@@ -67,11 +67,7 @@ export default class Card {
 
   countLikes(card) {
 		this._likes = card.likes;
-		if (this._likes.length === 0) {
-			this._counter.textContent = '0';
-		} else {
-			this._counter.textContent = this._likes.length
-		};
+		this._counter.textContent = this._likes.length;
 
 
 		if (this._ifCardLiked()) {
@@ -82,11 +78,12 @@ export default class Card {
 	};
 
   _setEventListeners() {
-    this._cardElementLike.addEventListener("click", () => { this._likeCard();});
-    this._cardElementDel.addEventListener("click", () => { this.deleteCard(this, this._cardId)});
+    this._cardElementLike.addEventListener("click", () => { this. _likeCard();});
+    this._cardElementDel.addEventListener('click', () => {
+      this._handleDeleteYourCard();
+    });
     this._cardElementPhoto.addEventListener("click", () => {
       this._handleCardClick(this._link, this._name,); }
     );
   }
 }
-
